@@ -170,31 +170,6 @@
           </div>
         </header>
 
-        <!-- Mobile Horizontal Scrollable Menu Bar -->
-        <div class="mobile-scroll-menu">
-          <div class="scroll-menu-item active" onclick="switchDashboardTab('admin-sub-overview', this)">
-            <i class="fa-solid fa-chart-pie"></i> <span>Overview</span>
-          </div>
-          <div class="scroll-menu-item" onclick="switchDashboardTab('admin-sub-books', this)">
-            <i class="fa-solid fa-book"></i> <span>Books</span>
-          </div>
-          <div class="scroll-menu-item" onclick="switchDashboardTab('admin-sub-members', this)">
-            <i class="fa-solid fa-user-group"></i> <span>Members</span>
-          </div>
-          <div class="scroll-menu-item" onclick="switchDashboardTab('admin-sub-desk', this)">
-            <i class="fa-solid fa-clipboard-list"></i> <span>Desk</span>
-          </div>
-          <div class="scroll-menu-item" onclick="switchDashboardTab('admin-sub-shelf-finder', this)">
-            <i class="fa-solid fa-compass"></i> <span>Shelf Finder</span>
-          </div>
-          <div class="scroll-menu-item" onclick="switchDashboardTab('admin-sub-settings', this)">
-            <i class="fa-solid fa-gears"></i> <span>Settings</span>
-          </div>
-          <div class="scroll-menu-item logout" onclick="handleLogout()">
-            <i class="fa-solid fa-power-off"></i> <span>Logout</span>
-          </div>
-        </div>
-
         <div class="dash-view-area">
 
           <!-- Subview 1: Overview Stats -->
@@ -719,6 +694,30 @@
 
         </div>
       </main>
+
+      <!-- Admin Bottom Navigation Bar -->
+      <nav class="bottom-nav">
+        <div class="bottom-nav-item active" onclick="switchDashboardTab('admin-sub-overview', this)">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Overview</span>
+        </div>
+        <div class="bottom-nav-item" onclick="switchDashboardTab('admin-sub-books', this)">
+          <i class="fa-solid fa-book"></i>
+          <span>Books</span>
+        </div>
+        <div class="bottom-nav-item" onclick="switchDashboardTab('admin-sub-members', this)">
+          <i class="fa-solid fa-user-group"></i>
+          <span>Members</span>
+        </div>
+        <div class="bottom-nav-item" onclick="switchDashboardTab('admin-sub-desk', this)">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <span>Desk</span>
+        </div>
+        <div class="bottom-nav-item" onclick="toggleSidebar()">
+          <i class="fa-solid fa-bars"></i>
+          <span>More</span>
+        </div>
+      </nav>
     </div>
   </div>
 
@@ -768,22 +767,6 @@
             <span class="active-library-tag" id="student-active-lib-badge">Library Name</span>
           </div>
         </header>
-
-        <!-- Mobile Horizontal Scrollable Menu Bar -->
-        <div class="mobile-scroll-menu">
-          <div class="scroll-menu-item active" onclick="switchStudentTab('student-sub-profile', this)">
-            <i class="fa-solid fa-id-card"></i> <span>Profile</span>
-          </div>
-          <div class="scroll-menu-item" onclick="switchStudentTab('student-sub-browse', this)">
-            <i class="fa-solid fa-magnifying-glass"></i> <span>Browse</span>
-          </div>
-          <div class="scroll-menu-item" onclick="switchStudentTab('student-sub-issues', this)">
-            <i class="fa-solid fa-book-reader"></i> <span>Checkouts</span>
-          </div>
-          <div class="scroll-menu-item logout" onclick="handleLogout()">
-            <i class="fa-solid fa-power-off"></i> <span>Logout</span>
-          </div>
-        </div>
 
         <div class="dash-view-area">
 
@@ -906,6 +889,26 @@
 
         </div>
       </main>
+
+      <!-- Student Bottom Navigation Bar -->
+      <nav class="bottom-nav">
+        <div class="bottom-nav-item active" onclick="switchStudentTab('student-sub-profile', this)">
+          <i class="fa-solid fa-id-card"></i>
+          <span>Profile</span>
+        </div>
+        <div class="bottom-nav-item" onclick="switchStudentTab('student-sub-browse', this)">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Browse</span>
+        </div>
+        <div class="bottom-nav-item" onclick="switchStudentTab('student-sub-issues', this)">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>Checkouts</span>
+        </div>
+        <div class="bottom-nav-item" onclick="toggleSidebar()">
+          <i class="fa-solid fa-bars"></i>
+          <span>More</span>
+        </div>
+      </nav>
     </div>
   </div>
 

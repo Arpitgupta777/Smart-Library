@@ -376,44 +376,38 @@ function switchDashboardTab(subviewId, element) {
   const sidebarLinks = document.querySelectorAll("#admin-view .sidebar-link");
   sidebarLinks.forEach(l => l.classList.remove("active"));
 
-  // Sync active scroll menu items
-  const scrollItems = document.querySelectorAll("#admin-view .scroll-menu-item");
-  scrollItems.forEach(i => i.classList.remove("active"));
+  // Sync active bottom nav items
+  const bottomNavItems = document.querySelectorAll("#admin-view .bottom-nav-item");
+  bottomNavItems.forEach(i => i.classList.remove("active"));
 
   let titleText = "Overview";
   if (subviewId === 'admin-sub-overview') {
     if (sidebarLinks[0]) sidebarLinks[0].classList.add("active");
-    if (scrollItems[0]) scrollItems[0].classList.add("active");
+    if (bottomNavItems[0]) bottomNavItems[0].classList.add("active");
     titleText = "Librarian Overview";
   } else if (subviewId === 'admin-sub-books') {
     if (sidebarLinks[1]) sidebarLinks[1].classList.add("active");
-    if (scrollItems[1]) scrollItems[1].classList.add("active");
+    if (bottomNavItems[1]) bottomNavItems[1].classList.add("active");
     titleText = "Manage Books";
   } else if (subviewId === 'admin-sub-members') {
     if (sidebarLinks[2]) sidebarLinks[2].classList.add("active");
-    if (scrollItems[2]) scrollItems[2].classList.add("active");
+    if (bottomNavItems[2]) bottomNavItems[2].classList.add("active");
     titleText = "Manage Members";
   } else if (subviewId === 'admin-sub-desk') {
     if (sidebarLinks[3]) sidebarLinks[3].classList.add("active");
-    if (scrollItems[3]) scrollItems[3].classList.add("active");
+    if (bottomNavItems[3]) bottomNavItems[3].classList.add("active");
     titleText = "Issue/Return Desk";
   } else if (subviewId === 'admin-sub-shelf-finder') {
     if (sidebarLinks[4]) sidebarLinks[4].classList.add("active");
-    if (scrollItems[4]) scrollItems[4].classList.add("active");
+    if (bottomNavItems[4]) bottomNavItems[4].classList.add("active");
     titleText = "Book's Shelf Finder";
   } else if (subviewId === 'admin-sub-settings') {
     if (sidebarLinks[5]) sidebarLinks[5].classList.add("active");
-    if (scrollItems[5]) scrollItems[5].classList.add("active");
+    if (bottomNavItems[4]) bottomNavItems[4].classList.add("active");
     titleText = "Settings";
   }
 
   document.getElementById("admin-section-title").textContent = titleText;
-
-  // Scroll active item into view smoothly on mobile scroll-menu
-  const activeScrollItem = document.querySelector("#admin-view .scroll-menu-item.active");
-  if (activeScrollItem) {
-    activeScrollItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-  }
 
   if (subviewId === 'admin-sub-overview') {
     loadAdminStatsAndRecent();
@@ -1366,32 +1360,26 @@ function switchStudentTab(subviewId, element) {
   const sidebarLinks = document.querySelectorAll("#student-view .sidebar-link");
   sidebarLinks.forEach(l => l.classList.remove("active"));
 
-  // Sync active scroll menu items
-  const scrollItems = document.querySelectorAll("#student-view .scroll-menu-item");
-  scrollItems.forEach(i => i.classList.remove("active"));
+  // Sync active bottom nav items
+  const bottomNavItems = document.querySelectorAll("#student-view .bottom-nav-item");
+  bottomNavItems.forEach(i => i.classList.remove("active"));
 
   let titleText = "Dashboard";
   if (subviewId === 'student-sub-profile') {
     if (sidebarLinks[0]) sidebarLinks[0].classList.add("active");
-    if (scrollItems[0]) scrollItems[0].classList.add("active");
+    if (bottomNavItems[0]) bottomNavItems[0].classList.add("active");
     titleText = "Student Profile";
   } else if (subviewId === 'student-sub-browse') {
     if (sidebarLinks[1]) sidebarLinks[1].classList.add("active");
-    if (scrollItems[1]) scrollItems[1].classList.add("active");
+    if (bottomNavItems[1]) bottomNavItems[1].classList.add("active");
     titleText = "Browse Books";
   } else if (subviewId === 'student-sub-issues') {
     if (sidebarLinks[2]) sidebarLinks[2].classList.add("active");
-    if (scrollItems[2]) scrollItems[2].classList.add("active");
+    if (bottomNavItems[2]) bottomNavItems[2].classList.add("active");
     titleText = "My Checkouts";
   }
 
   document.getElementById("student-section-title").textContent = titleText;
-
-  // Scroll active item into view smoothly on mobile scroll-menu
-  const activeScrollItem = document.querySelector("#student-view .scroll-menu-item.active");
-  if (activeScrollItem) {
-    activeScrollItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-  }
 
   if (subviewId === 'student-sub-profile') {
     loadStudentProfile();
