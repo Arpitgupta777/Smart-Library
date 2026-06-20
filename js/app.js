@@ -409,6 +409,12 @@ function switchDashboardTab(subviewId, element) {
 
   document.getElementById("admin-section-title").textContent = titleText;
 
+  // Scroll active item into view smoothly on mobile scroll-menu
+  const activeScrollItem = document.querySelector("#admin-view .scroll-menu-item.active");
+  if (activeScrollItem) {
+    activeScrollItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
   if (subviewId === 'admin-sub-overview') {
     loadAdminStatsAndRecent();
   } else if (subviewId === 'admin-sub-books') {
@@ -1380,6 +1386,12 @@ function switchStudentTab(subviewId, element) {
   }
 
   document.getElementById("student-section-title").textContent = titleText;
+
+  // Scroll active item into view smoothly on mobile scroll-menu
+  const activeScrollItem = document.querySelector("#student-view .scroll-menu-item.active");
+  if (activeScrollItem) {
+    activeScrollItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
 
   if (subviewId === 'student-sub-profile') {
     loadStudentProfile();
