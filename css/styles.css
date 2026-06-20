@@ -1294,6 +1294,10 @@ tr:hover td {
   .student-qr-container {
     margin-top: 10px;
   }
+
+  .mobile-scroll-menu {
+    display: flex;
+  }
 }
 
 @media (max-width: 576px) {
@@ -1500,4 +1504,65 @@ tr:hover td {
 .sidebar-backdrop.active {
   display: block;
   opacity: 1;
+}
+
+/* Mobile Horizontally Scrollable Menu Bar */
+.mobile-scroll-menu {
+  display: none;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px 15px;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 10px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  align-items: center;
+  width: 100%;
+}
+
+.mobile-scroll-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-menu-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.scroll-menu-item i {
+  font-size: 14px;
+}
+
+.scroll-menu-item:hover {
+  background: rgba(30, 58, 138, 0.05);
+  color: var(--text-primary);
+}
+
+.scroll-menu-item.active {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.15);
+}
+
+.scroll-menu-item.logout {
+  background: rgba(220, 38, 38, 0.05);
+  color: var(--color-accent);
+  border-color: rgba(220, 38, 38, 0.1);
+}
+
+.scroll-menu-item.logout:hover {
+  background: var(--color-accent);
+  color: #ffffff;
 }

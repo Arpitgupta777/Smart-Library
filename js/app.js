@@ -339,12 +339,6 @@ function handleLogout() {
   // Clear the persistent session
   localStorage.removeItem("smart_lib_session");
 
-  // Revert viewport back to mobile responsive
-  const viewport = document.querySelector('meta[name="viewport"]');
-  if (viewport) {
-    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
-  }
-
   switchView('home-view');
   showToast("Logged out successfully.", "info");
   loadLibrariesDropdown();
@@ -354,12 +348,6 @@ function handleLogout() {
 // ADMIN DASHBOARD MODULES
 // ==========================================
 function enterAdminDashboard() {
-  // Set desktop viewport mode on mobile/desktop browsers
-  const viewport = document.querySelector('meta[name="viewport"]');
-  if (viewport) {
-    viewport.setAttribute('content', 'width=1200');
-  }
-
   switchView('admin-view');
   document.getElementById("admin-profile-name").textContent = currentSession.name;
   document.getElementById("admin-profile-lib").textContent = currentSession.libraryName;
@@ -374,25 +362,52 @@ function enterAdminDashboard() {
   }
 
   // Set default tab active
-  const sidebarLinks = document.querySelectorAll("#admin-view .sidebar-link");
-  sidebarLinks.forEach(l => l.classList.remove("active"));
-  sidebarLinks[0].classList.add("active");
-
-  switchDashboardTab('admin-sub-overview', sidebarLinks[0]);
+  switchDashboardTab('admin-sub-overview');
 }
 
 function switchDashboardTab(subviewId, element) {
   closeSidebar();
   // Toggle subviews
   document.querySelectorAll("#admin-view .dash-subview").forEach(v => v.classList.remove("active"));
-  document.getElementById(subviewId).classList.add("active");
+  const targetView = document.getElementById(subviewId);
+  if (targetView) targetView.classList.add("active");
 
-  // Highlight active sidebar link
-  document.querySelectorAll("#admin-view .sidebar-link").forEach(l => l.classList.remove("active"));
-  if (element) {
-    element.classList.add("active");
-    document.getElementById("admin-section-title").textContent = element.querySelector("span").textContent;
+  // Sync active sidebar links
+  const sidebarLinks = document.querySelectorAll("#admin-view .sidebar-link");
+  sidebarLinks.forEach(l => l.classList.remove("active"));
+
+  // Sync active scroll menu items
+  const scrollItems = document.querySelectorAll("#admin-view .scroll-menu-item");
+  scrollItems.forEach(i => i.classList.remove("active"));
+
+  let titleText = "Overview";
+  if (subviewId === 'admin-sub-overview') {
+    if (sidebarLinks[0]) sidebarLinks[0].classList.add("active");
+    if (scrollItems[0]) scrollItems[0].classList.add("active");
+    titleText = "Librarian Overview";
+  } else if (subviewId === 'admin-sub-books') {
+    if (sidebarLinks[1]) sidebarLinks[1].classList.add("active");
+    if (scrollItems[1]) scrollItems[1].classList.add("active");
+    titleText = "Manage Books";
+  } else if (subviewId === 'admin-sub-members') {
+    if (sidebarLinks[2]) sidebarLinks[2].classList.add("active");
+    if (scrollItems[2]) scrollItems[2].classList.add("active");
+    titleText = "Manage Members";
+  } else if (subviewId === 'admin-sub-desk') {
+    if (sidebarLinks[3]) sidebarLinks[3].classList.add("active");
+    if (scrollItems[3]) scrollItems[3].classList.add("active");
+    titleText = "Issue/Return Desk";
+  } else if (subviewId === 'admin-sub-shelf-finder') {
+    if (sidebarLinks[4]) sidebarLinks[4].classList.add("active");
+    if (scrollItems[4]) scrollItems[4].classList.add("active");
+    titleText = "Book's Shelf Finder";
+  } else if (subviewId === 'admin-sub-settings') {
+    if (sidebarLinks[5]) sidebarLinks[5].classList.add("active");
+    if (scrollItems[5]) scrollItems[5].classList.add("active");
+    titleText = "Settings";
   }
+
+  document.getElementById("admin-section-title").textContent = titleText;
 
   if (subviewId === 'admin-sub-overview') {
     loadAdminStatsAndRecent();
@@ -1326,34 +1341,45 @@ function updateSystemSettingsIndicator() {
 // STUDENT/MEMBER DASHBOARD MODULES
 // ==========================================
 function enterStudentDashboard() {
-  // Set desktop viewport mode on mobile/desktop browsers
-  const viewport = document.querySelector('meta[name="viewport"]');
-  if (viewport) {
-    viewport.setAttribute('content', 'width=1200');
-  }
-
   switchView('student-view');
   document.getElementById("student-profile-name").textContent = currentSession.name;
   document.getElementById("student-profile-lib").textContent = currentSession.libraryName;
   document.getElementById("student-active-lib-badge").textContent = currentSession.libraryName;
 
-  const sidebarLinks = document.querySelectorAll("#student-view .sidebar-link");
-  sidebarLinks.forEach(l => l.classList.remove("active"));
-  sidebarLinks[0].classList.add("active");
-
-  switchStudentTab('student-sub-profile', sidebarLinks[0]);
+  // Set default tab active
+  switchStudentTab('student-sub-profile');
 }
 
 function switchStudentTab(subviewId, element) {
   closeSidebar();
   document.querySelectorAll("#student-view .dash-subview").forEach(v => v.classList.remove("active"));
-  document.getElementById(subviewId).classList.add("active");
+  const targetView = document.getElementById(subviewId);
+  if (targetView) targetView.classList.add("active");
 
-  document.querySelectorAll("#student-view .sidebar-link").forEach(l => l.classList.remove("active"));
-  if (element) {
-    element.classList.add("active");
-    document.getElementById("student-section-title").textContent = element.querySelector("span").textContent;
+  // Sync active sidebar links
+  const sidebarLinks = document.querySelectorAll("#student-view .sidebar-link");
+  sidebarLinks.forEach(l => l.classList.remove("active"));
+
+  // Sync active scroll menu items
+  const scrollItems = document.querySelectorAll("#student-view .scroll-menu-item");
+  scrollItems.forEach(i => i.classList.remove("active"));
+
+  let titleText = "Dashboard";
+  if (subviewId === 'student-sub-profile') {
+    if (sidebarLinks[0]) sidebarLinks[0].classList.add("active");
+    if (scrollItems[0]) scrollItems[0].classList.add("active");
+    titleText = "Student Profile";
+  } else if (subviewId === 'student-sub-browse') {
+    if (sidebarLinks[1]) sidebarLinks[1].classList.add("active");
+    if (scrollItems[1]) scrollItems[1].classList.add("active");
+    titleText = "Browse Books";
+  } else if (subviewId === 'student-sub-issues') {
+    if (sidebarLinks[2]) sidebarLinks[2].classList.add("active");
+    if (scrollItems[2]) scrollItems[2].classList.add("active");
+    titleText = "My Checkouts";
   }
+
+  document.getElementById("student-section-title").textContent = titleText;
 
   if (subviewId === 'student-sub-profile') {
     loadStudentProfile();
