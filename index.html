@@ -323,8 +323,7 @@
 
           <!-- Subview 4: Issue / Return Desk -->
           <div id="admin-sub-desk" class="dash-subview">
-            <div class="checkout-panel-grid"
-              style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; align-items: start;">
+            <div class="checkout-panel-grid">
 
               <!-- Sequential Workspace Panel -->
               <div class="section-card glass-panel" style="margin-bottom: 0;">
@@ -718,6 +717,8 @@
           <span>More</span>
         </div>
       </nav>
+      <!-- Mobile Sidebar Backdrop -->
+      <div class="sidebar-backdrop" onclick="closeSidebar()"></div>
     </div>
   </div>
 
@@ -909,6 +910,8 @@
           <span>More</span>
         </div>
       </nav>
+      <!-- Mobile Sidebar Backdrop -->
+      <div class="sidebar-backdrop" onclick="closeSidebar()"></div>
     </div>
   </div>
 
@@ -1133,8 +1136,7 @@
   <div id="qr-file-scanner-temp" style="position: absolute; left: -9999px; top: -9999px; width: 200px; height: 200px;">
   </div>
 
-  <!-- Sidebar Mobile Backdrop -->
-  <div id="sidebar-backdrop" class="sidebar-backdrop" onclick="closeSidebar()"></div>
+
 
   <!-- Toast Toast Container -->
   <div class="toast-container" id="toast-root"></div>

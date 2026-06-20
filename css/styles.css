@@ -1599,3 +1599,18 @@ tr:hover td {
     transform: translateY(0);
   }
 }
+
+/* Issue/Return Desk Layout Grid */
+.checkout-panel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 30px;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .checkout-panel-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

@@ -2016,8 +2016,10 @@ function openAddBookModalFromShelfFinder() {
 // MOBILE SIDEBAR HANDLERS
 // ==========================================
 function toggleSidebar() {
-  const sidebar = document.querySelector(".app-view.active .sidebar");
-  const backdrop = document.getElementById("sidebar-backdrop");
+  const activeView = document.querySelector(".app-view.active");
+  if (!activeView) return;
+  const sidebar = activeView.querySelector(".sidebar");
+  const backdrop = activeView.querySelector(".sidebar-backdrop");
   if (sidebar && backdrop) {
     sidebar.classList.toggle("open");
     backdrop.classList.toggle("active");
@@ -2025,8 +2027,10 @@ function toggleSidebar() {
 }
 
 function closeSidebar() {
-  const sidebar = document.querySelector(".app-view.active .sidebar");
-  const backdrop = document.getElementById("sidebar-backdrop");
+  const activeView = document.querySelector(".app-view.active");
+  if (!activeView) return;
+  const sidebar = activeView.querySelector(".sidebar");
+  const backdrop = activeView.querySelector(".sidebar-backdrop");
   if (sidebar && backdrop) {
     sidebar.classList.remove("open");
     backdrop.classList.remove("active");
