@@ -338,6 +338,13 @@ function handleLogout() {
   currentSession = null;
   // Clear the persistent session
   localStorage.removeItem("smart_lib_session");
+
+  // Revert viewport back to mobile responsive
+  const viewport = document.querySelector('meta[name="viewport"]');
+  if (viewport) {
+    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+  }
+
   switchView('home-view');
   showToast("Logged out successfully.", "info");
   loadLibrariesDropdown();
@@ -347,6 +354,12 @@ function handleLogout() {
 // ADMIN DASHBOARD MODULES
 // ==========================================
 function enterAdminDashboard() {
+  // Set desktop viewport mode on mobile/desktop browsers
+  const viewport = document.querySelector('meta[name="viewport"]');
+  if (viewport) {
+    viewport.setAttribute('content', 'width=1200');
+  }
+
   switchView('admin-view');
   document.getElementById("admin-profile-name").textContent = currentSession.name;
   document.getElementById("admin-profile-lib").textContent = currentSession.libraryName;
@@ -1313,6 +1326,12 @@ function updateSystemSettingsIndicator() {
 // STUDENT/MEMBER DASHBOARD MODULES
 // ==========================================
 function enterStudentDashboard() {
+  // Set desktop viewport mode on mobile/desktop browsers
+  const viewport = document.querySelector('meta[name="viewport"]');
+  if (viewport) {
+    viewport.setAttribute('content', 'width=1200');
+  }
+
   switchView('student-view');
   document.getElementById("student-profile-name").textContent = currentSession.name;
   document.getElementById("student-profile-lib").textContent = currentSession.libraryName;
