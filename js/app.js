@@ -133,6 +133,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Set initial login role toggle
   setLoginRole('admin');
+
+  // Check if session exists in local storage
+  const savedSession = localStorage.getItem("smart_lib_session");
+  if (savedSession) {
+    try {
+      const session = JSON.parse(savedSession);
+      currentSession = session;
+
+      // Fetch live library settings upon restoring session
+      const settings = await window.smartLibDB.getSettings(session.libraryId);
+      if (settings) {
+        appSettings.fineRate = settings.finePerDay;
+      }
+
+      if (session.role === 'admin') {
+        enterAdminDashboard();
+      } else {
+        enterStudentDashboard();
+      }
+      showToast(`Welcome back, ${session.name}!`, "success");
+    } catch (err) {
+      console.error("Failed to restore session:", err);
+      localStorage.removeItem("smart_lib_session");
+    }
+  }
 });
 
 // --- TOAST NOTIFICATIONS ---
@@ -287,6 +312,9 @@ async function handleLoginSubmit(e) {
     hideLoading();
     currentSession = session;
 
+    // Save session in local storage for persistence across refreshes
+    localStorage.setItem("smart_lib_session", JSON.stringify(session));
+
     showToast(`Logged in successfully! Welcome, ${session.name}`, "success");
     e.target.reset();
 
@@ -308,6 +336,8 @@ async function handleLoginSubmit(e) {
 // --- LOGOUT ---
 function handleLogout() {
   currentSession = null;
+  // Clear the persistent session
+  localStorage.removeItem("smart_lib_session");
   switchView('home-view');
   showToast("Logged out successfully.", "info");
   loadLibrariesDropdown();
